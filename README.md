@@ -14,11 +14,7 @@ A Minecraft bot assistant that uses AI to understand natural language commands a
 
 ## Installation
 
-1. Clone this repository
-2. Install dependencies:
-   ```
-   npm install
-   ```
+Please refer to the [Installation Steps](./Installation_steps.md).
 
 ## Usage
 
