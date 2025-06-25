@@ -1,5 +1,5 @@
 
-# Minecraft AI Companion with LM Studio + Fabric 1.21 + TLauncher
+# MinePal - AI-Agent with RL capabilites in a Minecraft world - Installation 
 
 A step-by-step guide to creating an **offline autonomous Minecraft AI bot**, powered by a **local LLM (LM Studio Meta‑LLaMA‑3.1‑Instruct)**, playing alongside you on a **Fabric 1.21 server** managed with TLauncher.
 
