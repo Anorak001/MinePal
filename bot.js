@@ -11,6 +11,7 @@ const path = require('path');
 const BOT_USERNAME = process.env.BOT_USERNAME || 'AI_Assistant';
 const LLM_URL = process.env.LLM_URL || 'http://127.0.0.1:1234';
 const LLM_MODEL = process.env.LLM_MODEL || 'meta-llama-3.1-8b-instruct';
+const LLM_API_KEY = process.env.LLM_API_KEY || '';
 const SERVER_HOST = process.env.SERVER_HOST || 'localhost';
 const SERVER_PORT = process.env.SERVER_PORT || 25565;
 const ENABLE_LLM = process.env.ENABLE_LLM !== 'false'; // Set to false to disable LLM
@@ -529,12 +530,16 @@ bot.on('chat', async (user, msg) => {
   try {
     // Get relevant context from memory to enhance the AI's response
     const context = memorySystem.getRelevantContext(user, msg);
-    
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    if (process.env.LLM_API_KEY) {
+      headers['Authorization'] = `Bearer ${process.env.LLM_API_KEY}`;
+    }
+
     const resp = await fetch(`${LLM_URL}/v1/chat/completions`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: headers,
       body: JSON.stringify({
         model: LLM_MODEL,
         messages: [
